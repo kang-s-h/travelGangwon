@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { useTourStore } from "@/store/store";
 import EmptyIcon from '@/assets/gif/empty.gif';
 import type { FestivalItem } from "@/api/TourismInformationService/entity";
 import CurrentFestival from "./CurrentFestivalList";
@@ -10,7 +9,7 @@ interface FestivalListProps {
 }
 
 export default function FestivalList({ items }: FestivalListProps) {
-  const { today } = useTourStore();
+  const today = dayjs().format('YYYYMMDD');
   const todayDate = dayjs(today, "YYYYMMDD");
 
   const currentFestivals = items.filter((item) => {

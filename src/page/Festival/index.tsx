@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
+import dayjs from "dayjs";
 import MainLayout from "@/layout/MainLayout";
 import { SIGNGU } from "@/constant/signgu";
 import { PAGE_SIZE } from "@/constant/pagination";
-import { useTourStore } from "@/store/store";
 import Pagination from "@/common/Components/Pagination";
 import { useFestivalList } from "./hooks/useFestival";
 import FestivalList from "./components/FestivalList";
@@ -11,7 +11,7 @@ import FestivalList from "./components/FestivalList";
 export default function Festival() {
   const [signgu, setSigngu] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const { today } = useTourStore();
+  const today = dayjs().format('YYYYMMDD');
 
   const { data } = useFestivalList({
     lDongSignguCd: signgu,
