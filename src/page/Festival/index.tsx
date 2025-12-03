@@ -4,7 +4,7 @@ import MainLayout from "@/layout/MainLayout";
 import { SIGNGU } from "@/constant/signgu";
 import { PAGE_SIZE } from "@/constant/pagination";
 import { useTourStore } from "@/store/store";
-import Pagination from "@/UI/Pagination";
+import Pagination from "@/common/Components/Pagination";
 import { useFestivalList } from "./hooks/useFestival";
 import FestivalList from "./components/FestivalList";
 
