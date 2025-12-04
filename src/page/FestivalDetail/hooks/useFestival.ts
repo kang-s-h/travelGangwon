@@ -1,8 +1,8 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   getTourismInformationFestivalInfo,
   getTourismInformationFestivalDetail,
 } from "@/api/TourismInformationService";
-import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useFestivalInfo = (contentId: string) => {
   return useSuspenseQuery({

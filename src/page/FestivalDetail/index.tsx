@@ -12,7 +12,7 @@ export default function FestivalDetail() {
     <MainLayout title="" description="">
       <section className="flex flex-col gap-6">
         <div className="min-h-[50vh]">
-          <Suspense fallback={<LoadingSpinner title="축제 정보를 불러오는 중이에요" />}>
+          <Suspense fallback={<LoadingSpinner title="축제 상세 정보를 불러오는 중이에요" />}>
             <FestivalContent contentId={contentId} />
           </Suspense>
         </div>
