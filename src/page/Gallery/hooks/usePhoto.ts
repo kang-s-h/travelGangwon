@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import type { GalleryItem, GalleryResponse } from "@/api/TourismPhotoService/entity";
 import { getTourismPhotoSearch, getTourismPhotoGroup } from "@/api/TourismPhotoService";
 
@@ -18,6 +18,18 @@ export const useSearchPhoto = () => {
     select: selectUniquePhotos,
   });
 };
+
+export const useSearchPhotoPagination = () => {
+  return useQuery({
+    queryKey: ['photo'],
+    queryFn: getTourismPhotoSearch,
+    select: (data : GalleryResponse) => {
+      return {
+        totalCount: selectUniquePhotos(data).length
+      }
+    }
+  })
+}
 
 export const usePhotoGroup = (title: string) => {
   return useSuspenseQuery({

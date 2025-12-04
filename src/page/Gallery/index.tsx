@@ -1,7 +1,8 @@
 import { useState, Suspense } from "react";
 import MainLayout from "@/layout/MainLayout";
 import Pagination from "@/common/Components/Pagination";
-import { useSearchPhoto } from "./hooks/usePhoto";
+import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import { useSearchPhotoPagination } from "./hooks/usePhoto";
 import PhotoModal from "./components/photoModal";
 import GalleryList from "./components/GalleryList";
 
@@ -10,11 +11,9 @@ export default function Gallery() {
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
   const pageSize = 20;
 
-  const { data: allItems } = useSearchPhoto();
-  const totalCount = allItems.length;
+  const { data: pagingData, isLoading: isPagingLoading } = useSearchPhotoPagination();
 
-  const startIndex = (page - 1) * pageSize;
-  const visibleItems = allItems.slice(startIndex, startIndex + pageSize);
+  const totalCount = pagingData?.totalCount ?? 0;
 
   return (
     <MainLayout
@@ -23,13 +22,15 @@ export default function Gallery() {
     >
       <section className="flex flex-col gap-4">
         <p className="text-xs text-slate-500">
-          총 {totalCount}개 그룹
+          총 {isPagingLoading ? "..." : totalCount}개 그룹
         </p>
         <div className="flex w-full min-h-[50vh] flex-col justify-center">
-          <GalleryList
-            items={visibleItems}
-            onItemClick={setSelectedTitle}
-          />
+          <Suspense fallback={<LoadingSpinner title="관광 사진 정보를 불러오는 중이에요" />}>
+            <GalleryList
+              page={page}
+              onItemClick={setSelectedTitle}
+            />
+          </Suspense>
         </div>
         <Pagination
           currentPage={page}

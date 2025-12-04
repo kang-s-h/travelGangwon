@@ -1,12 +1,19 @@
-import type { GalleryItem } from "@/api/TourismPhotoService/entity";
+import { useSearchPhoto } from "../hooks/usePhoto";
 
 interface GalleryListProps {
-  items: GalleryItem[];
+  page: number;
   onItemClick: (title: string) => void;
 }
 
-export default function GalleryList({ items, onItemClick }: GalleryListProps) {
-  if (items.length === 0) {
+export default function GalleryList({ page, onItemClick }: GalleryListProps) {
+  const pageSize = 20;
+
+  const { data } = useSearchPhoto();
+
+  const startIndex = (page - 1) * pageSize;
+  const visibleItems = data.slice(startIndex, startIndex + pageSize);
+
+  if (visibleItems.length === 0) {
     return (
       <div className="rounded-lg bg-white/70 px-4 py-6 text-center text-sm text-slate-500 shadow-sm">
         사진 데이터가 없습니다.
@@ -16,7 +23,7 @@ export default function GalleryList({ items, onItemClick }: GalleryListProps) {
 
   return (
     <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {items.map((item) => (
+      {visibleItems.map((item) => (
         <button
           key={item.galContentId}
           type="button"
