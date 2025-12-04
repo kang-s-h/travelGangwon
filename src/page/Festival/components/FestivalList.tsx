@@ -1,14 +1,23 @@
 import dayjs from "dayjs";
 import EmptyIcon from '@/assets/gif/empty.gif';
-import type { FestivalItem } from "@/api/TourismInformationService/entity";
+import { useFestivalList } from "../hooks/useFestival";
 import CurrentFestival from "./CurrentFestivalList";
 import OtherFestivalList from "./OtherFestivalList";
 
 interface FestivalListProps {
-  items: FestivalItem[];
+  signgu: string;
+  page: number;
+  startDate: string;
 }
 
-export default function FestivalList({ items }: FestivalListProps) {
+export default function FestivalList({ signgu, page, startDate }: FestivalListProps) {
+  const { data } = useFestivalList({
+    lDongSignguCd: signgu,
+    page,
+    startDate
+  });
+
+  const items = data.items.item ?? [];
   const today = dayjs().format('YYYYMMDD');
   const todayDate = dayjs(today, "YYYYMMDD");
 
@@ -29,11 +38,7 @@ export default function FestivalList({ items }: FestivalListProps) {
   if (items.length === 0) {
     return (
       <div className="flex flex-col w-full h-52 items-center justify-center">
-        <img
-          src={EmptyIcon}
-          alt="축제가 없습니다."
-          className="w-20 h-20 mb-3"
-        />
+        <img src={EmptyIcon} alt="축제가 없습니다." className="w-20 h-20 mb-3" />
         <p className="text-lg font-semibold text-slate-500">
           이 지역은 개최하는 축제가 없어요
         </p>

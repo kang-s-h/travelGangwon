@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { twMerge } from "tailwind-merge";
 import dayjs from "dayjs";
 import MainLayout from "@/layout/MainLayout";
 import { SIGNGU } from "@/constant/signgu";
 import { PAGE_SIZE } from "@/constant/pagination";
 import Pagination from "@/common/Components/Pagination";
-import { useFestivalList } from "./hooks/useFestival";
+import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import { useFestivalListPagination } from "./hooks/useFestival";
 import FestivalList from "./components/FestivalList";
 
 export default function Festival() {
@@ -13,13 +14,13 @@ export default function Festival() {
   const [page, setPage] = useState<number>(1);
   const today = dayjs().format('YYYYMMDD');
 
-  const { data } = useFestivalList({
+  const { data: pagingData, isLoading: isPagingLoading } = useFestivalListPagination({
     lDongSignguCd: signgu,
     startDate: "20250101",
     page,
   });
 
-  const items = data.items.item ?? [];
+  const totalCount = pagingData?.totalCount ?? 0;
 
   useEffect(() => {
     setPage(1);
@@ -34,7 +35,7 @@ export default function Festival() {
         <div className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-slate-500">
-              기준일 {today} · 총 {data.totalCount}개 축제
+              기준일 {today} · 총 {isPagingLoading ? "..." : totalCount}개 축제
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -68,11 +69,13 @@ export default function Festival() {
           </div>
         </div>
         <div className="flex w-full min-h-[50vh] flex-col justify-center">
-          <FestivalList items={items} />
+          <Suspense fallback={<LoadingSpinner title="축제 정보를 불러오는 중이에요" />}>
+            <FestivalList signgu={signgu} page={page} startDate="20250101" />
+          </Suspense>
         </div>
         <Pagination
           currentPage={page}
-          totalCount={data.totalCount}
+          totalCount={totalCount}
           pageSize={PAGE_SIZE}
           onChange={setPage}
         />
