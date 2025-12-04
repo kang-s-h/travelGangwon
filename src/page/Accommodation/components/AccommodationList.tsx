@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
-
-interface AccommodationItem {
-  contentid: string;
-  title: string;
-  firstimage: string;
-  addr1: string;
-  tel: string;
-}
+import { useAccommodationList } from "../hooks/useAccommodation";
 
 interface AccommodationListProps {
-  items: AccommodationItem[];
+  signgu: string;
+  page: number;
 }
 
-export default function AccommodationList({ items }: AccommodationListProps) {
+export default function AccommodationList({ signgu, page }: AccommodationListProps) {
   const navigate = useNavigate();
+
+  const { data } = useAccommodationList({
+    lDongSignguCd: signgu,
+    page
+  });
+
+  const items = data.items.item ?? [];
 
   if (items.length === 0) {
     return (

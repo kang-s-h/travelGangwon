@@ -1,22 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { twMerge } from 'tailwind-merge';
 import MainLayout from "@/layout/MainLayout";
 import { SIGNGU } from "@/constant/signgu";
 import { PAGE_SIZE } from "@/constant/pagination";
 import Pagination from "@/common/Components/Pagination";
+import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import { useAccommodationListPagination } from "./hooks/useAccommodation";
 import AccommodationList from "./components/AccommodationList";
-import { useAccommodationList } from "./hooks/useAccommodation";
 
 export default function Accommodation() {
   const [signgu, setSigngu] = useState<string>("");
   const [page, setPage] = useState<number>(1);
 
-  const { data } = useAccommodationList({
+  const { data: pagingData, isLoading: isPagingLoading } = useAccommodationListPagination({
     lDongSignguCd: signgu,
     page,
   });
 
-  const items = data.items.item ?? [];
+  const totalCount = pagingData?.totalCount ?? 0;
 
   useEffect(() => {
     setPage(1);
@@ -30,7 +31,7 @@ export default function Accommodation() {
         <div className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-slate-500">
-              총 {data.totalCount}개 숙소
+              총 {isPagingLoading ? "..." : totalCount}개 숙소
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -64,11 +65,13 @@ export default function Accommodation() {
           </div>
         </div>
         <div className="flex w-full min-h-[50vh] flex-col justify-center">
-          <AccommodationList items={items} />
+          <Suspense fallback={<LoadingSpinner title="숙소 정보를 불러오는 중이예요" />}>
+            <AccommodationList signgu={signgu} page={page} />
+          </Suspense>
         </div>
         <Pagination
           currentPage={page}
-          totalCount={data.totalCount}
+          totalCount={totalCount}
           pageSize={PAGE_SIZE}
           onChange={setPage}
         />
