@@ -3,8 +3,8 @@ import { twMerge } from 'tailwind-merge';
 import MainLayout from "@/layout/MainLayout";
 import { SIGNGU } from "@/constant/signgu";
 import { PAGE_SIZE } from "@/constant/pagination";
-import Pagination from "@/common/Components/Pagination";
-import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import Pagination from "@/components/Pagination";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAccommodationListPagination } from "./hooks/useAccommodation";
 import AccommodationList from "./components/AccommodationList";
 
