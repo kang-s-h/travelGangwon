@@ -1,5 +1,6 @@
 import type { CourseItem } from "@/api/DurunubiService/entity";
 import { useCourseList } from "../hooks/useCourse";
+import { formatBrTag } from "@/util/formatBrTag";
 
 interface CourseListProps {
   onCourseClick: (item: CourseItem) => void;
@@ -41,7 +42,7 @@ function CourseList({ onCourseClick }: CourseListProps) {
               거리 {item.crsDstnc} · 소요 {item.crsTotlRqrmHour} · 난이도 {item.crsLevel}
             </p>
             <p className="line-clamp-2 text-left text-xs text-slate-600">
-              {item.crsSummary || item.crsContents}
+              {formatBrTag(item.crsSummary || item.crsContents)}
             </p>
           </button>
         ))}

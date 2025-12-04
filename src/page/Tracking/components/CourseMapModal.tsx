@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import type { CourseItem } from "@/api/DurunubiService/entity";
 import { COURSE_IMAGE_MAP } from "@/constant/durunubi";
+import { formatBrTag } from "@/util/formatBrTag";
 
 interface CourseMapModalProps {
   course: CourseItem;
@@ -65,8 +66,8 @@ export default function CourseMapModal({ course, onClose }: CourseMapModalProps)
           <div className="border-t border-slate-200 px-4 py-4 md:px-6">
             <h3 className="mb-2 text-sm font-semibold text-slate-900">코스 소개</h3>
             <p className="text-sm leading-relaxed text-slate-600">
-              {course.crsSummary}
-              {course.crsContents}
+              {formatBrTag(course.crsSummary)}
+              {formatBrTag(course.crsContents)}
             </p>
           </div>
         </div>
