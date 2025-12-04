@@ -12,7 +12,7 @@ export default function AccommodationDetail() {
     <MainLayout title="" description="">
       <section className="flex flex-col gap-6">
         <div className="min-h-[50vh]">
-          <Suspense fallback={<LoadingSpinner title="숙소 정보를 불러오는 중이에요" />}>
+          <Suspense fallback={<LoadingSpinner title="숙소 상세 정보를 불러오는 중이에요" />}>
             <AccommodationContent contentId={contentId} />
           </Suspense>
         </div>

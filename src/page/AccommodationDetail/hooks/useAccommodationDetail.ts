@@ -1,5 +1,6 @@
-import { getTourismInformationAccommodationInfo, getTourismInformationAccommodationDetail } from "@/api/TourismInformationService";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { getTourismInformationAccommodationInfo, getTourismInformationAccommodationDetail } from "@/api/TourismInformationService";
+
 
 export const useAccommodationInfo = (contentId: string) => {
   return useSuspenseQuery({
