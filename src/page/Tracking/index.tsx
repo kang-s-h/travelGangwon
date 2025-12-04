@@ -1,7 +1,7 @@
 import { useState, Suspense } from "react";
 import type { CourseItem } from "@/api/DurunubiService/entity";
 import MainLayout from "@/layout/MainLayout";
-import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import CourseList from "./components/CourseList";
 import CourseMapModal from "./components/CourseMapModal";
 

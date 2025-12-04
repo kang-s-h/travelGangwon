@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "@/layout/MainLayout";
-import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import AccommodationContent from "./components/AccommodationContent";
 
 export default function AccommodationDetail() {

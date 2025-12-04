@@ -1,7 +1,7 @@
-import BaseInfoCard from "@/common/Components/BaseInfoCard";
+import BaseInfoCard from "@/components/BaseInfoCard";
 import { useAttractionDetail, useAttractionInfo } from "../hooks/useAttraction";
-import UsageInfoCard from "@/common/Components/UsageInfoCard";
-import LocationMap from "@/common/Components/LocationMap";
+import UsageInfoCard from "@/components/UsageInfoCard";
+import LocationMap from "@/components/LocationMap";
 
 function AttractionContent({ contentId }: { contentId: string }) {
   const { data: infoData } = useAttractionInfo(contentId);

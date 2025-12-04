@@ -1,7 +1,7 @@
 import { useFestivalInfo, useFestivalDetail } from "../hooks/useFestival";
-import LocationMap from "@/common/Components/LocationMap";
-import BaseInfoCard from "@/common/Components/BaseInfoCard";
-import UsageInfoCard from "@/common/Components/UsageInfoCard";
+import LocationMap from "@/components/LocationMap";
+import BaseInfoCard from "@/components/BaseInfoCard";
+import UsageInfoCard from "@/components/UsageInfoCard";
 
 export default function FestivalContent({ contentId }: { contentId: string }) {
   const { data: infoData } = useFestivalInfo(contentId);

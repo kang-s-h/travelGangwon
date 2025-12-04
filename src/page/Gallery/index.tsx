@@ -1,7 +1,7 @@
 import { useState, Suspense } from "react";
 import MainLayout from "@/layout/MainLayout";
-import Pagination from "@/common/Components/Pagination";
-import LoadingSpinner from "@/common/Components/LoadingSpinner";
+import Pagination from "@/components/Pagination";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useSearchPhotoPagination } from "./hooks/usePhoto";
 import PhotoModal from "./components/photoModal";
 import GalleryList from "./components/GalleryList";

@@ -1,9 +1,9 @@
-import BaseInfoCard from "@/common/Components/BaseInfoCard";
+import BaseInfoCard from "@/components/BaseInfoCard";
 import { useAccommodationInfo, useAccommodationDetail } from "../hooks/useAccommodationDetail";
 import { useRoomInfo } from "../hooks/useRoom";
 import AccommodationRoomList from "./AccommodationRoomList";
-import LocationMap from "@/common/Components/LocationMap";
-import UsageInfoCard from "@/common/Components/UsageInfoCard";
+import LocationMap from "@/components/LocationMap";
+import UsageInfoCard from "@/components/UsageInfoCard";
 
 export default function AccommodationContent({ contentId }: { contentId: string }) {
   const { data: detailData } = useAccommodationDetail(contentId);
