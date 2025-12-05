@@ -9,10 +9,6 @@ export const photoApiClient = createApiClient(PHOTO_API_URL);
 export const durunubiApiClient = createApiClient(DURUNUBI_API_URL);
 export const gpxApiClient = createApiClient(DURUNUBI_GPX_URL);
 
-if (!TOURISM_INFORMATION_API_URL) {
-  throw new Error('ATTRACTION_API 경로 환경변수가 설정되지 않았습니다.');
-}
-
 interface FetchOptions extends Omit<RequestInit, 'body'> {
   headers?: Record<string, string>;
   params?: Record<string, string | number | boolean>;
@@ -34,38 +30,9 @@ function createApiClient(BASE_URL: string) {
         { ...options, method: 'GET' }
       );
       return response.response.body;
-    },
-    post: async <T>(endPoint: string, options: FetchOptions = {}) => {
-      const response = await sendRequest<{ response: { body: T } }>(
-        `${BASE_URL}/${endPoint}`, 
-        { ...options, method: 'POST' }
-      );
-      return response.response.body;
-    },
-    put: async <T>(endPoint: string, options: FetchOptions = {}) => {
-      const response = await sendRequest<{ response: { body: T } }>(
-        `${BASE_URL}/${endPoint}`, 
-        { ...options, method: 'PUT' }
-      );
-      return response.response.body;
-    },
-    delete: async <T>(endPoint: string, options: FetchOptions = {}) => {
-      const response = await sendRequest<{ response: { body: T } }>(
-        `${BASE_URL}/${endPoint}`,
-        { ...options, method: 'DELETE' }
-      );
-      return response.response.body;
-    },
-    patch: async <T>(endPoint: string, options: FetchOptions = {}) => {
-      const response = await sendRequest<{ response: { body: T } }>(
-        `${BASE_URL}/${endPoint}`,
-        { ...options, method: 'PATCH' }
-      );
-      return response.response.body;
-    },
+    }
   };
 }
-
 
 async function sendRequest<T = unknown>(
   url: string,

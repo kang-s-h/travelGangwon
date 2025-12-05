@@ -44,7 +44,7 @@ export default function CourseMapModal({ course, onClose }: CourseMapModalProps)
                 {course.sigun}
               </span>
               <span>거리 {course.crsDstnc}</span>
-              <span>소요 {course.crsTotlRqrmHour}</span>
+              <span>소요 {course.crsTotlRqrmHour}분</span>
               <span>난이도 {course.crsLevel}</span>
             </div>
           </div>

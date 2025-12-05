@@ -39,7 +39,7 @@ function CourseList({ onCourseClick }: CourseListProps) {
               </span>
             </div>
             <p className="text-left text-[11px] text-slate-500">
-              거리 {item.crsDstnc} · 소요 {item.crsTotlRqrmHour} · 난이도 {item.crsLevel}
+              거리 {item.crsDstnc} · 소요 {item.crsTotlRqrmHour}분 · 난이도 {item.crsLevel}
             </p>
             <p className="line-clamp-2 text-left text-xs text-slate-600">
               {formatBrTag(item.crsSummary || item.crsContents)}

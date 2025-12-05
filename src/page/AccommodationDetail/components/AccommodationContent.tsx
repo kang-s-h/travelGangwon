@@ -29,10 +29,10 @@ export default function AccommodationContent({ contentId }: { contentId: string 
       </h1>
       <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)] mb-10">
         <BaseInfoCard info={baseInfo} />
-        <aside className="space-y-4">
+        <div className="space-y-4">
           <UsageInfoCard usageItems={usageItems} />
           <AccommodationRoomList rooms={rooms} />
-        </aside>
+        </div>
       </div>
       <LocationMap mapx={baseInfo.mapx} mapy={baseInfo.mapy} />
     </>

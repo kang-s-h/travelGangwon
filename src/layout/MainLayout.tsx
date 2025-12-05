@@ -1,20 +1,13 @@
 import type { ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import { NAV_ITEMS } from "@/constant/navigate";
 
 interface MainLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
 }
-
-const navItems = [
-  { to: "/touristAttraction", label: "관광지" },
-  { to: "/festival", label: "축제" },
-  { to: "/accommodation", label: "숙소" },
-  { to: "/tracking", label: "걷기 여행" },
-  { to: "/gallery", label: "포토 갤러리" },
-];
 
 export default function MainLayout({ title, description, children }: MainLayoutProps) {
   return (
@@ -31,7 +24,7 @@ export default function MainLayout({ title, description, children }: MainLayoutP
             </span>
           </Link>
           <nav className="flex gap-2 text-sm md:gap-4">
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
