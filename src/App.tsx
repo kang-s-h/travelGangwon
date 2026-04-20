@@ -11,8 +11,10 @@ import AccommodationDetail from "@/page/AccommodationDetail";
 import MainPage from "@/page/Main";
 
 function App() {
+
+  const basename = import.meta.env.DEV ? "" : "/travelGangwon";
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/main" element={<MainPage />} />
